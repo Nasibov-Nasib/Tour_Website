@@ -1,0 +1,122 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'</script>
+{{ block.super }}
+{% endblock %}
+
+<div class="container">
+<form action="add_guide/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!-- <label for="post">post</label>
+    {{form.as_p}}  
+    {{form.media}}   -->
+
+    {% for x in order %}
+
+        <input type="hidden" name="order_id" value="{{ x.id }}">
+        <input type="hidden" name="guide_id" value="{{ x.guide_id.id }}">
+
+
+    {% endfor %}
+
+
+
+        <!-- <br> -->
+    <label for="title">title</label>
+        <input type="text" name="title" class="form-control" size="15">
+        <br>
+    <label for="description">description</label>
+        <input type="text" name="description" class="form-control" size="15">
+        <br>
+    <label for="about">about</label> 
+        <input type="text" name="about" class="form-control" size="15">
+        <br>
+    <label for="duration">duration</label>
+        <input type="text" name="duration" class="form-control" size="15">
+        <br>
+    <label for="meeting_point">meeting_point</label> 
+        <input type="text" name="meeting_point" class="form-control" size="15">
+        <br>
+    <label for="transport">transport</label> 
+        <input type="text" name="transport" class="form-control" size="15">
+        <br>
+    <label for="whats_included">whats_included</label>
+        <input type="text" name="whats_included" class="form-control" size="15">
+        <br>
+    <label for="price">price</label> 
+        <input type="text" name="price" class="form-control" size="15">
+        <br>
+    <label for="extra">extra</label> 
+     <input type="text" name="extra" class="form-control" size="15">
+     <br>
+    <label for="restriction">restriction</label> 
+        <input type="text" name="restriction" class="form-control" size="15">
+        <br>
+    <label for="itinerary">itinerary</label> 
+        <input type="text" name="itinerary" class="form-control" size="15">  
+        <br>
+    <label for="">foto</label>
+        <input type="file" name="foto" multiple class="form-control" size="15">
+    <br><br>
+    <button type="submit">Enter</button>
+
+</form>
+
+<table class="table table-hover table-respomsive table-dark">
+    <thead>
+        
+        <th>#</th>
+        <th>content</th>
+        <th>title</th>
+        <th>description</th>
+        <th>about</th>
+        <th>duration</th>
+        <th>meeting_point</th>
+        <th>transport</th>
+        <th>whats_included</th>
+        <th>price</th>
+        <th>extra</th>
+        <th>restriction</th>
+        <th>itinerary</th>
+        <th>photo</th>
+        <th></th>
+
+    </thead>
+
+    <tbody class="tbody-dark">
+        {% for x in guide_id %}
+
+        <tr>
+        
+            <td>{{ forloop.counter }}</td>
+            <td>{{ x.content|safe}}</td>
+            <td>{{ x.title }}</td>
+            <td>{{ x.description }}</td>
+            <td>{{ x.about }}</td>
+            <td>{{ x.duration }}</td>
+            <td>{{ x.meeting_point }}</td>
+            <td>{{ x.transport }}</td>
+            <td>{{ x.whats_included }}</td>
+            <td>{{ x.price }}</td>
+            <td>{{ x.extra }}</td>
+            <td>{{ x.restriction }}</td>
+            <td>{{ x.itinerary }}</td>
+            <td><img style="width:130px; height:100px;" src="{{ x.photo }}"></td>
+            <td>
+                <a href="{% url 'delete_guide' x.id %}" class="btn btn-danger">Delete</a>
+            </td>
+
+
+        </tr>
+    </tbody>
+    {% endfor %}
+
+    </table>
+
+
+
+</div>
+
+{% endblock %}

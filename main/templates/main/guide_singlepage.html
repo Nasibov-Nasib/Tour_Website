@@ -1,0 +1,203 @@
+{% extends 'main/layout_profile.html' %}
+{% block content %}
+    <!-- Start Card Style -->
+    <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Dashboard Top  -->
+        {% for x in fltr %}
+                    <div class="rbt-dashboard-content-wrapper">
+
+                    {% if x.guide_cover == '' %}
+
+                        <div class="tutor-bg-photo bg_image bg_image--22 height-350"></div>
+
+                    {% else %}
+                    
+                        
+                            <div class="circle">
+
+                                    <img src="{{x.guide_cover}}" alt="Instructor" style="height:350px ;width:2550px ;">
+
+                                </div>
+                        
+ 
+                    {% endif %}     
+                        <!-- Start Tutor Information  -->
+                        
+                        <div class="rbt-tutor-information">
+                            <div class="rbt-tutor-information-left">
+                                <div class="thumbnail rbt-avatars size-lg">
+                                    <img src="{{ x.guide_photo }}" alt="Instructor">
+                                </div>
+                                <div class="tutor-content">
+                                    <h5 class="title">{{ x.guide_username }}</h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <ul class="rbt-meta rbt-meta-white mt--5">
+                                        <li><i class="feather-book"></i>20 Courses</li>
+                                        <li><i class="feather-users"></i>40 Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Tutor Information  -->
+                    </div>
+                    <!-- End Dashboard Top  -->
+                </div>
+                <div class="col-lg-12 mt--30">
+                    <div class="profile-content rbt-shadow-box">
+                        <h4 class="rbt-title-style-3">Biography</h4>
+                        <div class="row g-5">
+                            <div class="col-lg-8">
+                                <p class="mt--10 mb--20">{{ x.guide_information }}</p>
+                                <ul class="social-icon social-default justify-content-start">
+                                    <li><a href="https://www.facebook.com/">
+                                            <i class="feather-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li><a href="https://www.twitter.com">
+                                            <i class="feather-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li><a href="https://www.instagram.com/">
+                                            <i class="feather-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkdin.com/">
+                                            <i class="feather-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="rbt-information-list mt--15">
+                                    <li>
+                                        <a href="#"><i class="feather-phone"></i>{{ x.guide_phone }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 offset-lg-2">
+                                <div class="feature-sin best-seller-badge text-end h-100">
+                                    <span class="rbt-badge-2 w-100 text-center badge-full-height">
+                                        <span class="image"><img src="{{ x.guide_photo }}" alt="Best Seller Icon"></span>{{x.guide_username}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Start Card Area -->
+            <div class="rbt-profile-course-area mt--60">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sction-title">
+                            <h2 class="rbt-title-style-3">Tours of {{ x.guide_username }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5 mt--5">
+                    <!-- Start Single Card  -->
+       
+
+            
+
+                {% if x.active == 1 %}
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                        <div class="rbt-card variation-01 rbt-hover">
+                            <div class="rbt-card-img">
+                                <a href="{% url 'tour_single_page' x.id %}">
+                                    <img src="{{ x.tur_id.photo }}" alt="Card image">
+                                    
+                                </a>
+                            </div>
+                            <div class="rbt-card-body">
+                                <div class="rbt-card-top">
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-bookmark-btn">
+                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i
+                                                class="feather-bookmark"></i></a>
+                                    </div>
+                                </div>
+
+                                <h4 class="rbt-card-title"><a href="{% url 'tour_single_page' x.id %}">{{ x.tur_id.title }}</a>
+
+                                </h4>
+
+                                
+
+                                <p class="rbt-card-text"></p>
+                                <div class="rbt-author-meta mb--10">
+                                    <div class="rbt-avater">
+                                        <a href="#">
+                                            <img src="{{ x.guide_photo }}" alt="Sophia Jaymes">
+                                        </a>
+                                    </div>
+                                    <div class="rbt-author-info">
+                                        By <a href="{% url 'tour_single_page' x.id %}">{{ x.guide_username }}</a>
+                                    </div>
+                                </div>
+                                <div class="rbt-card-bottom">
+                                    <div class="rbt-price">
+                                        <span class="current-price">{{ x.tur_id.price }} usd</span>
+                                        <span class="off-price">$120</span>
+                                    </div>
+                                    <a class="rbt-btn-link" href="{% url 'tour_single_page' x.id %}">Learn
+                                        More<i class="feather-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %}
+                    <!-- End Single Card  -->
+        
+                    
+    {% endfor %}          
+                </div>
+            </div>
+            <!-- End Card Area -->
+
+            <div class="row">
+                <div class="col-lg-12 mt--60">
+                    <nav>
+                        <ul class="rbt-pagination">
+                            <li><a href="#" aria-label="Previous"><i class="feather-chevron-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#" aria-label="Next"><i class="feather-chevron-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Card Style -->
+
+    
+{% endblock  %}

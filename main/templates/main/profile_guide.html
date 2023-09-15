@@ -1,0 +1,367 @@
+{% extends 'main/layout_profile.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <!-- End Card Style -->
+      <!-- Start Card Style -->
+      <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Dashboard Top  -->
+                    <div class="rbt-dashboard-content-wrapper">
+                    {% if request.user.cover == '' %}
+
+                        <div class="tutor-bg-photo bg_image bg_image--22 height-350"></div>
+
+                    {% else %}
+                    
+                        {% for x in img %}
+                            
+
+                                {% if request.user.choise == 'guide' %}
+                                    <img src="{{x.cover}}" alt="Instructor" style="height:350px ;width:2550px ;">
+                                {% endif %}
+
+                                
+                        {% endfor %} 
+
+                    {% endif %}                        <!-- Start Tutor Information  -->
+                        <div class="rbt-tutor-information">
+                            <div class="rbt-tutor-information-left">
+                                <div class="thumbnail rbt-avatars size-lg">
+                                {% for x in img %}
+
+                                    {% if request.user.choise == 'guide' %}
+                                        <img src="{{x.img}}" alt="Instructor">
+                                    {% endif %}
+
+
+                                {% endfor %}
+                                </div>
+                                <div class="tutor-content">
+                                    <h5 class="title">{{request.user.first_name}} {{request.user.last_name}}</h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Tutor Information  -->
+                    </div>
+                    <!-- End Dashboard Top  -->
+
+                    <div class="row g-5">
+                        <div class="col-lg-3">
+                            <!-- Start Dashboard Sidebar  -->
+                            <div class="rbt-default-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                                <div class="inner">
+                                    <div class="content-item-content">
+
+                                        <div class="rbt-default-sidebar-wrapper">
+                                            <div class="section-title mb--20">
+                                                <h6 class="rbt-title-style-2">Welcome, {{request.user.first_name}} {{request.user.last_name}}</h6>
+                                            </div>
+                                            <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li><a href="{% url 'profile_guide' %}"><i class="feather-user"></i><span>My Profile</span></a></li>
+                                                    <!-- <li><a href="instructor-enrolled-courses.html"><i class="feather-book-open"></i><span>Enrolled Courses</span></a></li>
+                                                    <li><a href="instructor-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a></li>
+                                                    <li><a href="instructor-reviews.html"><i class="feather-star"></i><span>Reviews</span></a></li>
+                                                    <li><a href="instructor-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>My Quiz Attempts</span></a></li>
+                                                    <li><a href="instructor-order-history.html"><i class="feather-shopping-bag"></i><span>Order History</span></a></li> -->
+                                                </ul>
+                                            </nav>
+
+                                            <!-- <div class="section-title mt--40 mb--20">
+                                                <h6 class="rbt-title-style-2">Instructor</h6>
+                                            </div> -->
+
+                                            <!-- <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li><a href="instructor-course.html"><i class="feather-monitor"></i><span>My Courses</span></a></li>
+                                                    <li><a href="instructor-announcements.html"><i class="feather-volume-2"></i><span>Announcements</span></a></li>
+                                                    <li><a href="instructor-quiz-attempts.html"><i class="feather-message-square"></i><span>Quiz Attempts</span></a></li>
+                                                    <li><a href="instructor-assignments.html"><i class="feather-list"></i><span>Assignments</span></a></li>
+                                                </ul>
+                                            </nav> -->
+
+                                            <div class="section-title mt--40 mb--20">
+                                                <h6 class="rbt-title-style-2">User</h6>
+                                            </div>
+
+                                            <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li><a href="{% url 'settings' %}"><i class="feather-settings"></i><span>Settings</span></a></li>
+                                                    {% if request.user.choise == 'guide' %}
+                                                    <li><a href="{% url 'logout_guide' %}"><i class="feather-log-out"></i><span>Logout</span></a></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </nav>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dashboard Sidebar  -->
+                        </div>
+
+                        <div class="col-lg-9">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">Turlar</h4>
+                                    </div>
+
+                                    <div class="advance-tab-button mb--30">
+                                        <ul class="nav nav-tabs tab-button-style-2 justify-content-start" id="myTab-4" role="tablist">
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button active" id="home-tab-4" data-bs-toggle="tab" data-bs-target="#home-4" role="tab" aria-controls="home-4" aria-selected="true">
+                                                    <span class="title">Umumi Turlar</span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button" id="profile-tab-4" data-bs-toggle="tab" data-bs-target="#profile-4" role="tab" aria-controls="profile-4" aria-selected="false">
+                                                    <span class="title">Aktiv Turlar</span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button" id="contact-tab-4" data-bs-toggle="tab" data-bs-target="#contact-4" role="tab" aria-controls="contact-4" aria-selected="false">
+                                                    <span class="title">Tesdiqlenmis</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4">
+                                            <div class="row g-5">
+                                              
+
+                                    {% if request.user.choise == 'guide' %}
+                                       {% for x in order_guide %}
+        
+                                                <div class="col-lg-4 col-md-6 col-12" id="this">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a href="{% url 'tour_single_page' x.id %}">
+                                                                <img src="{{ x.tur_id.photo }}" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                          
+                                                            <h4 class="rbt-card-title"><a href="{% url 'tour_single_page' x.id %}">{{ x.tur_id.title }}</a>
+    
+                                                            </h4>
+                                                            <div class="rbt-price">
+                                                                <span class="current-price">{{ x.tur_id.price }} usd</span>
+                                                                <span class="off-price">$120</span>
+                                                            </div>
+                                                            yer :{{place}}
+
+                                                            <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                                {% if x.active == 1 %}
+    
+                                                                <a class="btn btn-success btn-sm" href="{% url 'block_tour' x.id %}#this"><i class="bi bi-toggle2-off" style="font-size: 13px;"></i></a> 
+                                                    
+                                                                {% else %}
+                                                    
+                                                                <a class="btn btn-warning btn-sm" href="{% url 'active_tour' x.id %}#this"><i class="bi bi-toggle2-on bi-md" style="font-size: 13px;"></i></a> 
+                                                    
+                                                                {% endif %} 
+                                                            </div>
+                                                            <div class="rbt-card-bottom">
+                                                                <p class="rbt-card-text">{{x.tur_id.description}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                           
+                                           
+                                       {% endfor %}
+
+                                    {% endif %}
+    
+                                                <!-- End Single Course  -->
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
+                                            <div class="row g-5">
+
+                                               
+
+                                                <!-- Start Single Course  -->
+                                                {% if request.user.choise == 'guide' %}
+
+                                                {% for x in order_guide %}
+
+                                                {% if x.utesdiq == 1 and x.gtesdiq == 0 %}
+                                                <div class="col-lg-4 col-md-6 col-12">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a href="{% url 'tour_single_page' x.id %}">
+                                                                <img src="{{ x.tur_id.photo }}" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                            <div class="rbt-card-top">
+                                                                <div class="rbt-review">
+                                                                    <div class="rating">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                    <span class="rating-count"> (3 Reviews)</span>
+                                                                </div>
+                                                                <div class="rbt-bookmark-btn">
+                                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i
+                                                                            class="feather-bookmark"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="rbt-card-title"><a href="{% url 'tour_single_page' x.id %}">{{ x.tur_id.title }}</a>
+  
+                                                            </h4>
+                                                            <ul class="rbt-meta">
+                                                                <li><i class="feather-book"></i>20 Lessons</li>
+                                                                <li><i class="feather-users"></i>30 Students</li>
+                                                            </ul>
+
+                                                            <div class="rbt-card-bottom">
+                                                                <div class="rbt-price">
+                                                                    <span class="current-price">{{ x.tur_id.price }} usd</span>
+                                                                    <span class="off-price">$120</span>
+                                                                </div>
+
+                                                                <div class="rbt-author-meta mb--10">
+                                                                    <div class="rbt-avater">                                                                   
+                                                                        
+                                                                        <a href="{% url 'guide_singlepage' x.id %}"><img src="{{ x.guide_photo }}" style="height: 70px ;width:100px ;" alt="Sophia Jaymes"></a>                                                                                            
+                                                                        
+                                                                    </div>
+                                                                    <div class="rbt-author-info">
+                                                                        <a href="{% url 'guide_singlepage' x.id %}">{{ x.guide_username }}</a>
+                                                                    </div>
+                                                                </div>
+
+                                                                <a class="rbt-btn-link" href="course-details.html">Learn
+                                                                    More<i class="feather-arrow-right"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+
+                                                {% endfor %}
+
+                                            {% endif %}
+
+                                           
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="contact-4" role="tabpanel" aria-labelledby="contact-tab-4">
+                                            <div class="row g-5">
+                                        {% if request.user.choise == 'guide' %}
+
+                                              
+                                            {% for x in order_guide  %}
+
+                                                {% if x.gtesdiq == 1 %}
+
+                                                <!-- Start Single Course  -->
+                                                <div class="col-lg-4 col-md-6 col-12">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a href="{% url 'tour_single_page' x.id %}">
+                                                                <img src="{{ x.tur_id.photo }}" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                            <div class="rbt-card-top">
+                                                                <div class="rbt-review">
+                                                                    <div class="rating">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                    <span class="rating-count"> (4 Reviews)</span>
+                                                                </div>
+                                                                <div class="rbt-bookmark-btn">
+                                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="rbt-card-title"><a href="{% url 'tour_single_page' x.id %}">{{ x.tur_id.title }}</a>
+      
+                                                            </h4>
+                                                            <div class="rbt-price">
+                                                                <span class="current-price">{{ x.tur_id.price }} usd</span>
+                                                                <span class="off-price">$120</span>
+                                                            </div>
+
+                                                            <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                                <div class="single-progress">
+                                                                    <h6 class="rbt-title-style-2 mb--10">Tamamlandi</h6>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar wow fadeInLeft bar-color-success" data-wow-duration="0.5s" data-wow-delay=".3s" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                                        </div>
+                                                                        <span class="rbt-title-style-2 progress-number">100%</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-card-bottom">
+                                                                <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" href="#">Download Certificate</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Single Course  -->
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                        {% endif %}
+
+                                       
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Card Style -->
+
+
+{% else %}
+<script >
+
+    setTimeout(function () {
+        window.location.href = "{% url 'index' %}";
+     }, );
+
+</script>
+
+{% endif %}
+    <!-- Start Footer aera -->
+{% endblock  %}
